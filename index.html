@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>Binary and Decimal Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: #f2f2f2;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+      color: #333333;
+    }
+    
+    #inputBox {
+      width: 300px;
+      height: 40px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      padding: 5px;
+      border-radius: 3px;
+    }
+    
+    #swapButton {
+      width: 120px;
+      height: 40px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+
+#result {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #333333;
+  
+  padding: 10px;
+  border-radius: 4px;
+  
+}
+
+
+
+  </style>
+</head>
+<body>
+  <h1>Binary and Decimal Converter</h1>
+  
+  <input type="text" id="inputBox" placeholder="Enter binary or decimal number">
+  <br>
+  <button id="swapButton">Swap</button>
+  <br>
+  <div id="result"></div>
+  
+  <script>
+    var inputBox = document.getElementById("inputBox");
+    var swapButton = document.getElementById("swapButton");
+    var result = document.getElementById("result");
+    
+    swapButton.addEventListener("click", swap);
+    inputBox.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        swap();
+      }
+    });
+    
+    function swap() {
+      var value = inputBox.value;
+      
+      if (/^[01]+$/.test(value)) {
+        // Binary to Decimal conversion
+        var decimal = parseInt(value, 2);
+        result.innerHTML = "Binary " + value + " is equivalent to Decimal " + decimal;
+      } else if (/^\d+$/.test(value)) {
+        // Decimal to Binary conversion
+        var binary = (value >>> 0).toString(2);
+        result.innerHTML = "Decimal " + value + " is equivalent to Binary " + binary;
+      } else {
+       alert("Invalid input!");
+      }
+    }
+  </script>
+</body>
+</html>
